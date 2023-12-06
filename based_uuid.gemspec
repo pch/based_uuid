@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ["piotr@chmolowski.pl"]
 
   spec.summary = "URL-friendly, Base32-encoded UUIDs for Rails models"
-  spec.homepage = "https://github.com/pchm/based_uuid"
+  spec.homepage = "https://github.com/pch/based_uuid"
   spec.required_ruby_version = ">= 3.2.0"
   spec.license = "MIT"
 
