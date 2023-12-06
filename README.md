@@ -1,4 +1,4 @@
-# BasedUUID: double-clickable, URL-friendly UUIDs for your Rails models
+# BasedUUID: URL-friendly UUIDs for Rails models
 
 [![Build Status](https://github.com/pch/based_uuid/workflows/Tests/badge.svg)](https://github.com/pch/based_uuid/actions) [![Gem Version](https://badge.fury.io/rb/based_uuid.svg)](https://badge.fury.io/rb/based_uuid)
 
@@ -89,4 +89,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/pch/ba
 
 This gem is heavily inspired by [Stripe IDs](https://stripe.com/docs/api) and the [prefixed_ids](https://github.com/excid3/prefixed_ids/tree/master) gem by Chris Oliver.
 
-Parts of the base32 encoding code are borrowed from the [ulid gem](https://github.com/rafaelsales/ulid) by Rafael Sales.
+Parts of the base32 encoding code are borrowed from the [ulid](https://github.com/rafaelsales/ulid) gem by Rafael Sales.
