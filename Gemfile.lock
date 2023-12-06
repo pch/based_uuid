@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    based_uuid (0.5.0)
+    based_uuid (0.5.2)
       activerecord (>= 7.0)
       activesupport (>= 7.0)
 
