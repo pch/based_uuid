@@ -47,6 +47,7 @@ class TestHasBasedUUID < Minitest::Test
 
     article = Article.create(id: SecureRandom.uuid)
     assert_equal article, BasedUUID.find(article.based_uuid)
+    assert_raises(BasedUUID::Error) { BasedUUID.find("wrong_#{article.based_uuid(prefix: false)}") }
   end
 
   def test_based_uuid
