@@ -30,11 +30,16 @@ module BasedUUID
       [prefix.presence, uuid_base32]
     end
 
-    def based_uuid(uuid:, prefix:)
+    def encode(uuid:, prefix:)
       uuid_base32 = Base32UUID.encode(uuid)
       return uuid_base32 unless prefix
 
       "#{prefix}#{delimiter}#{uuid_base32}"
+    end
+
+    def decode(token)
+      _, uuid_base32 = split(token)
+      Base32UUID.decode(uuid_base32)
     end
   end
 end

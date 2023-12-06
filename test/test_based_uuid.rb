@@ -12,16 +12,24 @@ class TestBasedUUID < Minitest::Test
     refute_nil ::BasedUUID::VERSION
   end
 
-  def test_based_uuid
+  def test_encoding
     uuid = "018c3b49-560c-719f-9daf-bae405f6ffca"
     base32 = "01hgxmjngce6fsvbxtwg2zdzya"
 
-    assert_equal "example_#{base32}", BasedUUID.based_uuid(uuid:, prefix: "example")
-    assert_equal base32, BasedUUID.based_uuid(uuid:, prefix: nil)
+    assert_equal "example_#{base32}", BasedUUID.encode(uuid:, prefix: "example")
+    assert_equal base32, BasedUUID.encode(uuid:, prefix: nil)
 
     BasedUUID.delimiter = "-"
 
-    assert_equal "example-#{base32}", BasedUUID.based_uuid(uuid:, prefix: "example")
+    assert_equal "example-#{base32}", BasedUUID.encode(uuid:, prefix: "example")
+  end
+
+  def test_decoding
+    base32 = "01hgxmjngce6fsvbxtwg2zdzya"
+
+    assert_equal "018c3b49-560c-719f-9daf-bae405f6ffca", BasedUUID.decode(base32)
+    assert_equal "018c3b49-560c-719f-9daf-bae405f6ffca", BasedUUID.decode("example_#{base32}")
+    assert_equal "018c3b49-560c-719f-9daf-bae405f6ffca", BasedUUID.decode("anyprefixwillworkhere_#{base32}")
   end
 
   def test_splitting_tokens_with_prefixes

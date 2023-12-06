@@ -41,7 +41,7 @@ module BasedUUID
     def based_uuid(prefix: true)
       raise ArgumentError, "UUID is empty" if _primary_key_value.blank?
 
-      BasedUUID.based_uuid(uuid: _primary_key_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
+      BasedUUID.encode(uuid: _primary_key_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
     end
 
     private

@@ -12,7 +12,7 @@ bpo_12dm1qresn83st62reqdw7f7cv  #=> 226d037c-3b35-40f3-a30b-0ebb78779d9b
 
 This gem encodes UUID primary keys into 26-character lowercase strings using [Crockford’s base32](https://www.crockford.com/base32.html) encoding. The optional prefix helps you identify the model it represents.
 
-BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) (`id`) in your ActiveRecord model. It doesn’t affect how your ActiveRecord primary key UUIDs are stored in the database. Prefix and base32 encoding are only used for presentation.
+BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) (`id`) in your ActiveRecord model. It doesn’t affect how your primary key UUIDs are stored in the database. Prefixes and base32-encoded strings are only used for presentation.
 
 ## Installation
 
@@ -65,12 +65,21 @@ BasedUUID.find("user_763j02ryxh8dbs56mgcjqrmmgt")
 
 ### BasedUUID as default URL identifiers
 
-BasedUUID aims to be unintrusive and it doesn’t affect how Rails URLs are generated, so if you want to use it as default URL param, add this to your model:
+BasedUUID aims to be non-intrusive and it doesn’t affect how Rails URLs are generated, so if you want to use it as default URL param, add this to your model:
 
 ```ruby
 def to_param
   based_uuid
 end
+```
+
+### Use outside ActiveRecord
+
+BasedUUID can be used outside ActiveRecord, too. You encode any UUID with it:
+
+```ruby
+BasedUUID.encode(uuid: "226d037c-3b35-40f3-a30b-0ebb78779d9b", prefix: :bpo)
+BasedUUID.decode("bpo_12dm1qresn83st62reqdw7f7cv")
 ```
 
 * * *
