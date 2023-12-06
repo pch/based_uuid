@@ -1,0 +1,25 @@
+AllCops:
+  TargetRubyVersion: 3.2
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Naming/PredicateName:
+  Enabled: false
