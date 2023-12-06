@@ -10,9 +10,9 @@ user_4yoiald3wfbvpeu2sbsk7cssdi
 acc_ejwqg7b3gvaphiylb25xq545tm
 ```
 
-This gem works by encoding UUIDs into 26-character lowercase strings using [Crockford’s base32](https://www.crockford.com/base32.html) encoding. The optional prefix helps you identify the model it represents.
+This gem encodes UUID primary keys into 26-character lowercase strings using [Crockford’s base32](https://www.crockford.com/base32.html) encoding. The optional prefix helps you identify the model it represents.
 
-BasedUUID doesn’t affect how your ActiveRecord primary key UUIDs are stored in the database. Prefix and base32 encoding are only used for presentation.
+BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) (`id`) in your ActiveRecord model. It doesn’t affect how your ActiveRecord primary key UUIDs are stored in the database. Prefix and base32 encoding are only used for presentation.
 
 ## Installation
 
@@ -24,7 +24,7 @@ gem "based_uuid"
 
 ## Usage
 
-BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) in your ActiveRecord model.
+Add the following line to your model class:
 
 ```ruby
 class BlogPost < ApplicationRecord
