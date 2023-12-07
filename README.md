@@ -1,7 +1,6 @@
 # BasedUUID: URL-friendly UUIDs for Rails models
 
-[![Build Status](https://github.com/pch/based_uuid/workflows/Tests/badge.svg)](https://github.com/pch/based_uuid/actions) [![Gem Version](https://badge.fury.io/rb/based_uuid.svg)](https://badge.fury.io/rb/based_uuid)
-
+[![Build Status](https://github.com/pch/based_uuid/workflows/Tests/badge.svg)](https://github.com/pch/based_uuid/actions)
 
 Generate “double-clickable”, URL-friendly UUIDs with (optional) prefixes:
 
