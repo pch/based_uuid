@@ -30,7 +30,7 @@ module BasedUUID
       [prefix.presence, uuid_base32]
     end
 
-    def encode(uuid:, prefix:)
+    def encode(uuid:, prefix: nil)
       uuid_base32 = Base32UUID.encode(uuid)
       return uuid_base32 unless prefix
 

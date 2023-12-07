@@ -17,6 +17,7 @@ class TestBasedUUID < Minitest::Test
     base32 = "01hgxmjngce6fsvbxtwg2zdzya"
 
     assert_equal "example_#{base32}", BasedUUID.encode(uuid:, prefix: "example")
+    assert_equal base32, BasedUUID.encode(uuid:)
     assert_equal base32, BasedUUID.encode(uuid:, prefix: nil)
 
     BasedUUID.delimiter = "-"

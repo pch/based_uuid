@@ -97,6 +97,7 @@ end
 BasedUUID can be used outside ActiveRecord, too. You can encode any UUID with it:
 
 ```ruby
+BasedUUID.encode(uuid: "226d037c-3b35-40f3-a30b-0ebb78779d9b")
 BasedUUID.encode(uuid: "226d037c-3b35-40f3-a30b-0ebb78779d9b", prefix: :bpo)
 BasedUUID.decode("bpo_12dm1qresn83st62reqdw7f7cv")
 ```
