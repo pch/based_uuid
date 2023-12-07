@@ -1,4 +1,5 @@
 require "test_helper"
+require "securerandom"
 
 class TestBase32UUID < Minitest::Test
   UUIDS_V7 = {

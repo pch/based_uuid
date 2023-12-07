@@ -1,5 +1,6 @@
 require "test_helper"
 require "ostruct"
+require "securerandom"
 
 class FakeActiveRecordBase < OpenStruct
   include BasedUUID::HasBasedUUID
