@@ -73,6 +73,26 @@ def to_param
 end
 ```
 
+### Custom UUID column name
+
+`BasedUUID` will respect the value of `Model.primary_key`, so it supports custom primary key names:
+
+```ruby
+class Transaction < ApplicationRecord
+  self.primary_key = "txid"
+
+  has_based_uuid prefix: :tx
+end
+```
+
+If you want to use a different column, other than the primary key, you can pass it as an option to `has_based_uuid`:
+
+```ruby
+class Session < ApplicationRecord
+  has_based_uuid prefix: :sid, uuid_column: :session_id
+end
+```
+
 ### Use outside ActiveRecord
 
 BasedUUID can be used outside ActiveRecord, too. You can encode any UUID with it:

@@ -10,13 +10,16 @@ module BasedUUID
 
     included do
       class_attribute :_based_uuid_prefix
+      class_attribute :_based_uuid_column
     end
 
     class_methods do
-      def has_based_uuid(prefix: nil)
+      def has_based_uuid(prefix: nil, uuid_column: primary_key)
         include ModelExtensions
 
         self._based_uuid_prefix = prefix
+        self._based_uuid_column = uuid_column
+
         BasedUUID.register_model_prefix(prefix, self) if prefix
       end
     end
@@ -30,7 +33,7 @@ module BasedUUID
         prefix, uuid_base32 = BasedUUID.split(token)
         raise ArgumentError, "Invalid prefix" if prefix && prefix.to_sym != _based_uuid_prefix
 
-        find_by(primary_key => Base32UUID.decode(uuid_base32))
+        find_by(_based_uuid_column => Base32UUID.decode(uuid_base32))
       end
 
       def find_by_based_uuid!(token)
@@ -39,15 +42,15 @@ module BasedUUID
     end
 
     def based_uuid(prefix: true)
-      raise ArgumentError, "UUID is empty" if _primary_key_value.blank?
+      raise ArgumentError, "UUID is empty" if _uuid_column_value.blank?
 
-      BasedUUID.encode(uuid: _primary_key_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
+      BasedUUID.encode(uuid: _uuid_column_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
     end
 
     private
 
-    def _primary_key_value
-      self[self.class.primary_key]
+    def _uuid_column_value
+      self[self.class._based_uuid_column]
     end
   end
 end

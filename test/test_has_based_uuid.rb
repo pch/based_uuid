@@ -37,6 +37,10 @@ class Transaction < FakeActiveRecordBase
   has_based_uuid prefix: :tx
 end
 
+class Session < FakeActiveRecordBase
+  has_based_uuid prefix: :sid, uuid_column: :session_id
+end
+
 class TestHasBasedUUID < Minitest::Test
   def setup
     @user = User.create(id: "59a9608b-bbbf-4d1a-9adc-2dc34875e423")
@@ -57,6 +61,16 @@ class TestHasBasedUUID < Minitest::Test
     assert_raises(ArgumentError) { User.new.based_uuid }
   end
 
+  def test_based_uuid_for_custom_primary_keys
+    assert_equal "tx_34swbe3m298v4sarc4vpppsvja",
+                 Transaction.new(txid: "64cf16e1-d049-46c9-9561-84ddad6cee4a").based_uuid
+  end
+
+  def test_based_uuid_for_custom_uuid_columns
+    assert_equal "sid_5akm5ysprd930remqpbbhc0pca",
+                 Session.new(session_id: "aa9d0bec-db0d-48c1-8752-f65ae2c0598a").based_uuid
+  end
+
   def test_find_by_based_uuid
     assert_nil User.find_by_based_uuid(random_user.based_uuid)
 
@@ -75,6 +89,14 @@ class TestHasBasedUUID < Minitest::Test
 
     Transaction.find_by_based_uuid(tx.based_uuid).tap do |found_tx|
       assert_equal tx, found_tx
+    end
+  end
+
+  def test_find_by_based_uuid_for_custom_uuid_columns
+    session = Session.create(session_id: SecureRandom.uuid)
+
+    Session.find_by_based_uuid(session.based_uuid).tap do |found_session|
+      assert_equal session, found_session
     end
   end
 
