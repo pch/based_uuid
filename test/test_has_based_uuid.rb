@@ -4,6 +4,8 @@ require "ostruct"
 class FakeActiveRecordBase < OpenStruct
   include BasedUUID::HasBasedUUID
 
+  class RecordNotFound < StandardError; end
+
   class_attribute :primary_key
   self.primary_key = "id"
 
@@ -16,6 +18,10 @@ class FakeActiveRecordBase < OpenStruct
 
   def self.find_by(attrs)
     fake_datastore[attrs[primary_key]]
+  end
+
+  def self.find_by!(attrs)
+    fake_datastore[attrs[primary_key]] or raise RecordNotFound
   end
 
   def [](key)
@@ -74,7 +80,7 @@ class TestHasBasedUUID < Minitest::Test
   def test_find_by_based_uuid
     assert_nil User.find_by_based_uuid(random_user.based_uuid)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
+    assert_raises(FakeActiveRecordBase::RecordNotFound) do
       User.find_by_based_uuid!(random_user.based_uuid)
     end
     assert_raises(ArgumentError) { User.find_by_based_uuid!("wrong_#{@user.based_uuid(prefix: false)}") }

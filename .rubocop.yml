@@ -23,3 +23,7 @@ Layout/LineLength:
 
 Naming/PredicateName:
   Enabled: false
+
+# https://github.com/rubocop/rubocop/issues/7298
+Lint/UselessAccessModifier:
+  Enabled: false
