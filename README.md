@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/pch/based_uuid/workflows/Tests/badge.svg)](https://github.com/pch/based_uuid/actions)
 
-Generate “double-clickable”, URL-friendly UUIDs with (optional) prefixes:
+Generate “double-clickable”, URL-friendly UUIDs with optional prefixes:
 
 ```
 user_763j02ryxh8dbs56mgcjqrmmgt #=> e61c802c-7bb1-4357-929a-9064af8a521a
@@ -11,7 +11,7 @@ bpo_12dm1qresn83st62reqdw7f7cv  #=> 226d037c-3b35-40f3-a30b-0ebb78779d9b
 
 This gem encodes UUID primary keys into 26-character lowercase strings using [Crockford’s base32](https://www.crockford.com/base32.html) encoding. The optional prefix helps you identify the model it represents.
 
-BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) (`id`) in your ActiveRecord model. It doesn’t affect how your primary key UUIDs are stored in the database. Prefixes and base32-encoded strings are only used for presentation.
+By default, BasedUUID assumes that you have a [UUID primary key](https://guides.rubyonrails.org/v5.0/active_record_postgresql.html#uuid) (`id`) in your ActiveRecord model. It doesn’t affect how UUIDs are stored in the database. Prefixes and base32-encoded strings are only used for presentation.
 
 ## Installation
 
@@ -31,7 +31,7 @@ class BlogPost < ApplicationRecord
 end
 
 post = BlogPost.last
-post.based_uuid #=> bpo_12dm1qresn83st62reqdw7f7cv
+post.based_uuid                #=> bpo_12dm1qresn83st62reqdw7f7cv
 post.based_uuid(prefix: false) #=> 12dm1qresn83st62reqdw7f7cv
 ```
 
