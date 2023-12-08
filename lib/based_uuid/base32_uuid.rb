@@ -1,5 +1,5 @@
 module BasedUUID
-  module Base32UUID
+  class Base32UUID
     CROCKFORDS_ALPHABET = "0123456789abcdefghjkmnpqrstvwxyz".freeze
     CHARACTER_MAP = CROCKFORDS_ALPHABET.bytes.freeze
 
