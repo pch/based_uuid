@@ -48,7 +48,7 @@ module BasedUUID
     end
 
     def based_uuid(prefix: true)
-      raise ArgumentError, "UUID is empty" if _uuid_column_value.blank?
+      return nil if _uuid_column_value.blank?
 
       BasedUUID.encode(uuid: _uuid_column_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
     end
