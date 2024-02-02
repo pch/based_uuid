@@ -53,6 +53,14 @@ module BasedUUID
       BasedUUID.encode(uuid: _uuid_column_value, prefix: prefix ? self.class._based_uuid_prefix : nil)
     end
 
+    def based_uuid_with_prefix
+      based_uuid(prefix: true)
+    end
+
+    def based_uuid_without_prefix
+      based_uuid(prefix: false)
+    end
+
     private
 
     def _uuid_column_value

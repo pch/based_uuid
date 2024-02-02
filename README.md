@@ -33,6 +33,9 @@ end
 post = BlogPost.last
 post.based_uuid                #=> bpo_12dm1qresn83st62reqdw7f7cv
 post.based_uuid(prefix: false) #=> 12dm1qresn83st62reqdw7f7cv
+
+post.based_uuid_with_prefix
+post.based_uuid_without_prefix
 ```
 
 ### Lookup
@@ -102,7 +105,7 @@ BasedUUID.encode(uuid: "226d037c-3b35-40f3-a30b-0ebb78779d9b", prefix: :bpo)
 BasedUUID.decode("bpo_12dm1qresn83st62reqdw7f7cv")
 ```
 
-* * *
+---
 
 ## Development
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    based_uuid (0.6.3)
+    based_uuid (0.6.4)
       activesupport (>= 7.0)
 
 GEM

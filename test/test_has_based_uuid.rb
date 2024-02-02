@@ -64,6 +64,8 @@ class TestHasBasedUUID < Minitest::Test
   def test_based_uuid
     assert_equal "user_2sn5g8qexz9md9nq1drd47bs13", @user.based_uuid
     assert_equal "2sn5g8qexz9md9nq1drd47bs13", @user.based_uuid(prefix: false)
+    assert_equal "user_2sn5g8qexz9md9nq1drd47bs13", @user.based_uuid_with_prefix
+    assert_equal "2sn5g8qexz9md9nq1drd47bs13", @user.based_uuid_without_prefix
 
     assert_nil User.new.based_uuid
   end
